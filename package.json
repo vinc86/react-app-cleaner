@@ -1,0 +1,24 @@
+{
+  "name": "react-app-cleaner",
+  "version": "1.0.0",
+  "main": "app.js",
+  "description": "A cli command to clean up your create-react-app",
+  "keywords": [
+    "create-react-app",
+    "cleaner",
+    "cli",
+    "react",
+    "package",
+    "cleanup",
+    "clean"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "nodemon": "^2.0.13"
+  }
+}
