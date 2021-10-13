@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "app.js",
   "description": "A cli command to clean up your create-react-app",
+  "homepage": "https://github.com/vinc86/react-app-cleaner",
+  "bugs": {
+    "email": "vincenzomancuso86@gmail.com",
+    "url": "https://github.com/vinc86/react-app-cleaner/issues"
+  },
   "keywords": [
     "create-react-app",
     "cleaner",
@@ -13,12 +18,19 @@
     "clean"
   ],
   "license": "MIT",
+  "private": false,
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node app.js"
+  },
+  "repository": {
+    "url": "https://github.com/vinc86/react-app-cleaner.git",
+    "type": "git"
+  },
+  "author": "Vincenzo Mancuso",
+  "engines": {
+    "node": "v14.16.1"
   },
   "dependencies": {
-    "inquirer": "^8.2.0",
-    "nodemon": "^2.0.13"
+    "inquirer": "^8.2.0"
   }
 }
