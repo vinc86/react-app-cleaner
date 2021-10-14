@@ -1,8 +1,10 @@
 {
   "name": "react-app-cleaner",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "src/app.js",
-  "bin": "src/app.js",
+  "bin": {
+    "react-app-cleaner":"src/app.js"
+  },
   "description": "A cli command to clean up your create-react-app",
   "homepage": "https://github.com/vinc86/react-app-cleaner",
   "bugs": {
