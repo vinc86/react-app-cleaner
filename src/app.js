@@ -42,7 +42,7 @@ const cleanFolder = (folderName, environment) => {
     } else {
 
         contentForReplacement.forEach(file => {
-            const fileToWrite = fs.readFileSync(`${__dirname}/${location}-${folderName}/${file}`);
+            const fileToWrite = fs.readFileSync(`${__dirname}/templates/${location}-${folderName}/${file}`);
             fs.writeFileSync(`${path}/${folderName}/${file}`, fileToWrite);
         })
     }
