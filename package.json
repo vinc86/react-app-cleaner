@@ -1,6 +1,6 @@
 {
   "name": "react-app-cleaner",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "src/app.js",
   "bin": {
     "react-app-cleaner":"src/app.js"

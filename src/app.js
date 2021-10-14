@@ -92,6 +92,8 @@ const cleanFolder = (folderName, environment) => {
                 
                 if (more === true) {
                     fs.rmdirSync(`${path}/${otherFolder}`, { recursive: true })
+                    fs.mkdirSync(`${path}/${otherFolder}`);
+                    
                     cleanFolder(otherFolder, environment)
                     console.log(`${otherFolder} folder was cleaned successfully!`);
                 }
