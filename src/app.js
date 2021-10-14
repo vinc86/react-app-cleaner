@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /* eslint-disable array-callback-return */
 const fs = require('fs');
 const inquirer = require('inquirer');
