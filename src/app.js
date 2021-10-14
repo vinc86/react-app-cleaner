@@ -35,7 +35,7 @@ const cleanFolder = (folderName, environment) => {
 
     if (folderName === "public") {
         contentForReplacement.forEach(file => {
-            const fileToWrite = fs.readFileSync(`${__dirname}/${folderName}/${file}`);
+            const fileToWrite = fs.readFileSync(`${__dirname}/templates/${folderName}/${file}`);
             fs.writeFileSync(`${path}/${folderName}/${file}`, fileToWrite);
         })
 
