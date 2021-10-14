@@ -1,10 +1,8 @@
 #!/usr/bin/env node
-/* eslint-disable array-callback-return */
+
 const fs = require('fs');
 const inquirer = require('inquirer');
-//const { cwd } = require('process');
-
-const path = __dirname.split("/cleaner", __dirname.length).join("");
+const path = process.cwd();
 
 
 /* console.log("cwd",process.cwd())
@@ -33,14 +31,14 @@ const readRootDir = () => {
 
 const cleanFolder = (folderName, environment) => {
     const location = environment === "TypeScript" ? "ts" : "js";
-    const contentForReplacement = folderName === "src" ? fs.readdirSync(`${__dirname}/${location}-${folderName}`) : fs.readdirSync(`${__dirname}/public`) ;
+    const contentForReplacement = folderName === "src" ? fs.readdirSync(`${__dirname}/templates/${location}-${folderName}`) : fs.readdirSync(`${__dirname}/templates/public`);
 
-    if(folderName === "public"){
+    if (folderName === "public") {
         contentForReplacement.forEach(file => {
             const fileToWrite = fs.readFileSync(`${__dirname}/${folderName}/${file}`);
             fs.writeFileSync(`${path}/${folderName}/${file}`, fileToWrite);
         })
-                    
+
     } else {
 
         contentForReplacement.forEach(file => {
@@ -50,18 +48,18 @@ const cleanFolder = (folderName, environment) => {
     }
 }
 
-( async () => inquirer.prompt([{
+(async () => inquirer.prompt([{
     name: "environment",
     message: "Your environment?",
-    type: "list", 
+    type: "list",
     choices: ["JavaScript", "TypeScript"]
-    
-}]).then(({environment}) => {
+
+}]).then(({ environment }) => {
 
     inquirer.prompt([{
         name: 'selection',
         message: "Select the folder:",
-        type: 'list', 
+        type: 'list',
         choices: readRootDir()
 
     }]).then(folder => {
@@ -69,18 +67,18 @@ const cleanFolder = (folderName, environment) => {
         inquirer.prompt([{
             name: "action",
             message: "Would you want to clean it?",
-            type: "list", 
+            type: "list",
             choices: ["Yes", "No"]
         }]).then(answer => {
-        
-   
-            if(answer.action === "Yes"){
-                fs.rmdirSync(`${path}/${folder.selection}`, { recursive: true})
+
+
+            if (answer.action === "Yes") {
+                fs.rmdirSync(`${path}/${folder.selection}`, { recursive: true })
                 fs.mkdirSync(`${path}/${folder.selection}`);
-                
-               cleanFolder(folder.selection, environment)
-                
-               console.log(`${folder.selection} folder was cleaned successfully!`);
+
+                cleanFolder(folder.selection, environment)
+
+                console.log(`${folder.selection} folder was cleaned successfully!`);
 
             }
 
@@ -89,17 +87,17 @@ const cleanFolder = (folderName, environment) => {
                 type: "confirm",
                 message: `Would you want to clean also ${folder.selection === "public" ? "src" : "public"}?`
             }]).then(({ more }) => {
-                
-                const otherFolder = readRootDir().filter( f => f !== folder.selection).join("");
+
+                const otherFolder = readRootDir().filter(f => f !== folder.selection).join("");
                 console.log(otherFolder)
-                if(more === true){
-                   cleanFolder(otherFolder, environment)
-                   console.log(`${otherFolder} folder was cleaned successfully!`);
+                if (more === true) {
+                    cleanFolder(otherFolder, environment)
+                    console.log(`${otherFolder} folder was cleaned successfully!`);
                 }
             })
-        
+
         }).catch(err => console.log(err))
-        
+
     })
 
 }))()

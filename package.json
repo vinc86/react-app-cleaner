@@ -1,6 +1,6 @@
 {
   "name": "react-app-cleaner",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "src/app.js",
   "bin": "src/app.js",
   "description": "A cli command to clean up your create-react-app",
@@ -21,7 +21,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node app.js"
+    "start": "node src/app.js"
   },
   "repository": {
     "url": "https://github.com/vinc86/react-app-cleaner.git",
