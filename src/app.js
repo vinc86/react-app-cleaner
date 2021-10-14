@@ -50,11 +50,12 @@ const cleanFolder = (folderName, environment) => {
     }
 }
 
-inquirer.prompt([{
+( async () => inquirer.prompt([{
     name: "environment",
     message: "Your environment?",
     type: "list", 
     choices: ["JavaScript", "TypeScript"]
+    
 }]).then(({environment}) => {
 
     inquirer.prompt([{
@@ -101,7 +102,7 @@ inquirer.prompt([{
         
     })
 
-})
+}))()
 
 
 
