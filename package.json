@@ -1,6 +1,6 @@
 {
   "name": "react-app-cleaner",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "src/app.js",
   "bin": "src/app.js",
   "description": "A cli command to clean up your create-react-app",
