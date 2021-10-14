@@ -89,8 +89,9 @@ const cleanFolder = (folderName, environment) => {
             }]).then(({ more }) => {
 
                 const otherFolder = readRootDir().filter(f => f !== folder.selection).join("");
-                console.log(otherFolder)
+                
                 if (more === true) {
+                    fs.rmdirSync(`${path}/${otherFolder}`, { recursive: true })
                     cleanFolder(otherFolder, environment)
                     console.log(`${otherFolder} folder was cleaned successfully!`);
                 }
