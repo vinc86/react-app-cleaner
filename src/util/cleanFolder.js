@@ -4,7 +4,7 @@ const cleanFolder = (path, folderName, environment) => {
     const localPath = __dirname.split("/util").join("");
     const location = environment === "typescript" ? "ts" : "js";
 
-    const contentForReplacement = folderName === "src" ? fs.readdirSync(`${localPath}/templates/${location}-${folderName}`) : fs.readdirSync(`${__dirname}/templates/public`);
+    const contentForReplacement = folderName === "src" ? fs.readdirSync(`${localPath}/templates/${location}-${folderName}`) : fs.readdirSync(`${localPath}/templates/public`);
 
     if (folderName === "public") {
         contentForReplacement.forEach(file => {
