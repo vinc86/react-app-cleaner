@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const cleanFolder = (folderName, environment) => {
+const cleanFolder = (path, folderName, environment) => {
     const localPath = __dirname.split("/util").join("");
     const location = environment === "typescript" ? "ts" : "js";
 

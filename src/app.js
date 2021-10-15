@@ -36,7 +36,7 @@ const environment = setEnvironment(path);
             fs.rmdirSync(`${path}/${folder.selection}`, { recursive: true });
             fs.mkdirSync(`${path}/${folder.selection}`);
 
-            cleanFolder(folder.selection, environment);
+            cleanFolder(path, folder.selection, environment);
 
             console.log(
               `\x1b[34m${folder.selection}\x1b[0m folder was cleaned successfully!`
@@ -62,7 +62,7 @@ const environment = setEnvironment(path);
                 fs.rmdirSync(`${path}/${otherFolder}`, { recursive: true });
                 fs.mkdirSync(`${path}/${otherFolder}`);
 
-                cleanFolder(otherFolder, environment);
+                cleanFolder(path, otherFolder, environment);
                 console.log(
                   `\x1b[34m${otherFolder}\x1b[0m folder was cleaned successfully!`
                 );
