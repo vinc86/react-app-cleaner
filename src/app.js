@@ -1,110 +1,73 @@
 #!/usr/bin/env node
-
-const fs = require('fs');
-const inquirer = require('inquirer');
+const fs = require("fs");
+const inquirer = require("inquirer");
+const {
+  isReactInstalled,
+  setEnvironment,
+  readRootDir,
+  cleanFolder,
+} = require("./util/index");
 const path = process.cwd();
+const environment = setEnvironment(path);
 
-
-/* console.log("cwd",process.cwd())
-console.log("path",path+"/logger-client") */
-
-
-/* fs.readdirSync(cwd()).map(file => {
-    if (file === 'package.json') {
-        
-        const package = JSON.parse(fs.readFileSync(file));
-        package.dependencies.typescript ? environment = "typescript" : environment = "javascript";
-         
-    }
-}) */
-const readRootDir = () => {
-    const folders = fs.readdirSync(path)
-    const selection = [];
-    folders.map(folder => {
-        if (folder === "public" || folder === "src") {
-            selection.push(folder);
-        }
-    })
-    return selection;
-}
-
-
-const cleanFolder = (folderName, environment) => {
-    const location = environment === "TypeScript" ? "ts" : "js";
-    const contentForReplacement = folderName === "src" ? fs.readdirSync(`${__dirname}/templates/${location}-${folderName}`) : fs.readdirSync(`${__dirname}/templates/public`);
-
-    if (folderName === "public") {
-        contentForReplacement.forEach(file => {
-            const fileToWrite = fs.readFileSync(`${__dirname}/templates/${folderName}/${file}`);
-            fs.writeFileSync(`${path}/${folderName}/${file}`, fileToWrite);
-        })
-
-    } else {
-
-        contentForReplacement.forEach(file => {
-            const fileToWrite = fs.readFileSync(`${__dirname}/templates/${location}-${folderName}/${file}`);
-            fs.writeFileSync(`${path}/${folderName}/${file}`, fileToWrite);
-        })
-    }
-}
-
-(async () => inquirer.prompt([{
-    name: "environment",
-    message: "Your environment?",
-    type: "list",
-    choices: ["JavaScript", "TypeScript"]
-
-}]).then(({ environment }) => {
-
-    inquirer.prompt([{
-        name: 'selection',
+(async () =>
+  !!isReactInstalled(path) &&
+  inquirer
+    .prompt([
+      {
+        name: "selection",
         message: "Select the folder:",
-        type: 'list',
-        choices: readRootDir()
-
-    }]).then(folder => {
-
-        inquirer.prompt([{
+        type: "list",
+        choices: readRootDir(path),
+      },
+    ])
+    .then((folder) => {
+      inquirer
+        .prompt([
+          {
             name: "action",
             message: "Would you want to clean it?",
             type: "list",
-            choices: ["Yes", "No"]
-        }]).then(answer => {
+            choices: ["Yes", "No"],
+          },
+        ])
+        .then((answer) => {
+          if (answer.action === "Yes") {
+            fs.rmdirSync(`${path}/${folder.selection}`, { recursive: true });
+            fs.mkdirSync(`${path}/${folder.selection}`);
 
+            cleanFolder(folder.selection, environment);
 
-            if (answer.action === "Yes") {
-                fs.rmdirSync(`${path}/${folder.selection}`, { recursive: true })
-                fs.mkdirSync(`${path}/${folder.selection}`);
+            console.log(
+              `\x1b[34m${folder.selection}\x1b[0m folder was cleaned successfully!`
+            );
+          }
 
-                cleanFolder(folder.selection, environment)
-
-                console.log(`${folder.selection} folder was cleaned successfully!`);
-
-            }
-
-            inquirer.prompt([{
+          inquirer
+            .prompt([
+              {
                 name: "more",
                 type: "confirm",
-                message: `Would you want to clean also ${folder.selection === "public" ? "src" : "public"}?`
-            }]).then(({ more }) => {
+                message: `Would you want to clean also \x1b[34m${
+                  folder.selection === "public" ? "src" : "public"
+                }\x1b[0m folder?`,
+              },
+            ])
+            .then(({ more }) => {
+              const otherFolder = readRootDir(path)
+                .filter((f) => f !== folder.selection)
+                .join("");
 
-                const otherFolder = readRootDir().filter(f => f !== folder.selection).join("");
-                
-                if (more === true) {
-                    fs.rmdirSync(`${path}/${otherFolder}`, { recursive: true })
-                    fs.mkdirSync(`${path}/${otherFolder}`);
-                    
-                    cleanFolder(otherFolder, environment)
-                    console.log(`${otherFolder} folder was cleaned successfully!`);
-                }
-            })
+              if (more === true) {
+                fs.rmdirSync(`${path}/${otherFolder}`, { recursive: true });
+                fs.mkdirSync(`${path}/${otherFolder}`);
 
-        }).catch(err => console.log(err))
-
-    })
-
-}))()
-
-
-
-
+                cleanFolder(otherFolder, environment);
+                console.log(
+                  `\x1b[34m${otherFolder}\x1b[0m folder was cleaned successfully!`
+                );
+              }
+            });
+        })
+        .catch((err) => console.log(err));
+    }))();
