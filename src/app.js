@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const { exec } = require("child_process");
 const fs = require("fs");
 const inquirer = require("inquirer");
 const {
@@ -6,6 +7,7 @@ const {
   setEnvironment,
   readRootDir,
   cleanFolder,
+  getPackageInit
 } = require("./util/index");
 const path = process.cwd();
 const environment = setEnvironment(path);
@@ -27,12 +29,11 @@ const environment = setEnvironment(path);
           {
             name: "action",
             message: "Would you want to clean it?",
-            type: "list",
-            choices: ["Yes", "No"],
+            type: "confirm",
           },
         ])
-        .then((answer) => {
-          if (answer.action === "Yes") {
+        .then(({ action }) => {
+          if (action === true) {
             fs.rmdirSync(`${path}/${folder.selection}`, { recursive: true });
             fs.mkdirSync(`${path}/${folder.selection}`);
 
@@ -67,6 +68,24 @@ const environment = setEnvironment(path);
                   `\x1b[34m${otherFolder}\x1b[0m folder was cleaned successfully!`
                 );
               }
+
+              inquirer.prompt([{
+                name: 'router',
+                type: 'confirm',
+                message: 'Would you want to install \x1b[34mreact-router-dom?\x1b[0m'
+              }]).then(({ router })=> {
+                if(router === true){
+
+                  exec(`${getPackageInit()} react-router-dom`,(err, stdout)=>{
+                    if(err) {
+                      console.log(err)
+                      return;
+                    }
+                    console.log(stdout);
+                    console.log("\x1b[34mreact-router-dom\x1b[0m successfully installed.")
+                  })
+                }
+              })
             });
         })
         .catch((err) => console.log(err));
