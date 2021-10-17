@@ -2,9 +2,9 @@
 
 ## A simple CLI tool for cleaning up your `REACT` project initialized with `create-react-app`
 
-This tool will cleanup the content of the folder `src` and `public`.
-
-Supports also projects initialized with TypeScript template.
+- This tool will cleanup the content of the folder `src` and `public`.
+- Possibility to install `react-router-dom`  
+- Supports projects initialized with TypeScript template.
 
 ## How To
 
