@@ -76,7 +76,7 @@ const environment = setEnvironment(path);
               }]).then(({ router })=> {
                 if(router === true){
 
-                  exec(`${getPackageInit()} react-router-dom`,(err, stdout)=>{
+                  exec(`${getPackageInit(path)} react-router-dom`,(err, stdout)=>{
                     if(err) {
                       console.log(err)
                       return;
