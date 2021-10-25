@@ -1,14 +1,15 @@
 #!/usr/bin/env node
-const { exec } = require("child_process");
-const fs = require("fs");
-const inquirer = require("inquirer");
-const {
+import { exec } from "child_process";
+import fs from "fs";
+import inquirer from "inquirer";
+import {
   isReactInstalled,
   setEnvironment,
   readRootDir,
   cleanFolder,
-  getPackageInit
-} = require("./util/index");
+  getPackageInit,
+} from "./util/index";
+
 const path = process.cwd();
 const environment = setEnvironment(path);
 
@@ -69,23 +70,32 @@ const environment = setEnvironment(path);
                 );
               }
 
-              inquirer.prompt([{
-                name: 'router',
-                type: 'confirm',
-                message: 'Would you want to install \x1b[34mreact-router-dom?\x1b[0m'
-              }]).then(({ router })=> {
-                if(router === true){
-
-                  exec(`${getPackageInit(path)} react-router-dom`,(err, stdout)=>{
-                    if(err) {
-                      console.log(err)
-                      return;
-                    }
-                    console.log(stdout);
-                    console.log("\x1b[34mreact-router-dom\x1b[0m successfully installed.")
-                  })
-                }
-              })
+              inquirer
+                .prompt([
+                  {
+                    name: "router",
+                    type: "confirm",
+                    message:
+                      "Would you want to install \x1b[34mreact-router-dom?\x1b[0m",
+                  },
+                ])
+                .then(({ router }) => {
+                  if (router === true) {
+                    exec(
+                      `${getPackageInit(path)} react-router-dom`,
+                      (err, stdout) => {
+                        if (err) {
+                          console.log(err);
+                          return;
+                        }
+                        console.log(stdout);
+                        console.log(
+                          "\x1b[34mreact-router-dom\x1b[0m successfully installed."
+                        );
+                      }
+                    );
+                  }
+                });
             });
         })
         .catch((err) => console.log(err));
