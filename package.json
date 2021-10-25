@@ -1,6 +1,6 @@
 {
   "name": "react-app-cleaner",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "main": "src/app.js",
   "bin": {
     "react-app-cleaner": "dist/app.js"
@@ -23,7 +23,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node dist/app.js"
   },
   "repository": {
     "url": "https://github.com/vinc86/react-app-cleaner.git",

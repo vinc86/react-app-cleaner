@@ -1,5 +1,5 @@
 import fs from "fs";
-import { Environment, RootDir } from "src/types";
+import { Environment, RootDir } from "../types";
 
 export const cleanFolder = (
   path: string,
