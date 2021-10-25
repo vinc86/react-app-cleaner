@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const isReactInstalled = (path: string) => {
+export const isReactInstalled = (path: string) => {
   let response: { react?: boolean } = {};
 
   fs.readdirSync(path).map((file) => {
@@ -23,5 +23,3 @@ const isReactInstalled = (path: string) => {
 
   return response;
 };
-
-export default isReactInstalled;

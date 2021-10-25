@@ -5,7 +5,7 @@ enum Packages {
   NPM = "package-lock.json",
 }
 
-const getPackageInit = (path: string) => {
+export const getPackageInit = (path: string) => {
   let response;
 
   fs.readdirSync(path).map((file) => {
@@ -20,5 +20,3 @@ const getPackageInit = (path: string) => {
 
   return response;
 };
-
-export default getPackageInit;

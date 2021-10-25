@@ -1,7 +1,7 @@
 import fs from "fs";
 import { Environment } from "src/types";
 
-const setEnvironment = (path: string) => {
+export const setEnvironment = (path: string) => {
   let environment: Environment | undefined = undefined;
 
   fs.readdirSync(path).map((file) => {
@@ -14,5 +14,3 @@ const setEnvironment = (path: string) => {
   });
   return environment;
 };
-
-export default setEnvironment;

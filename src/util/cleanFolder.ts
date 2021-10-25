@@ -1,13 +1,13 @@
 import fs from "fs";
 import { Environment, RootDir } from "src/types";
 
-const cleanFolder = (
+export const cleanFolder = (
   path: string,
   folderName: string,
-  environment: Environment
+  environment: Environment | undefined
 ) => {
   const localPath = __dirname.split("/util").join("");
-  const location = environment === Environment.TS ? "ts" : "js";
+  const location = environment && environment === Environment.TS ? "ts" : "js";
 
   const contentForReplacement =
     folderName === RootDir.SRC
@@ -30,5 +30,3 @@ const cleanFolder = (
     });
   }
 };
-
-export default cleanFolder;

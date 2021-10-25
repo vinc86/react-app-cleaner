@@ -1,7 +1,7 @@
 import fs from "fs";
 import { RootDir } from "src/types";
 
-const readRootDir = (path: string) => {
+export const readRootDir = (path: string) => {
   const folders = fs.readdirSync(path);
   const selection: string[] = [];
   folders.map((folder) => {
@@ -11,5 +11,3 @@ const readRootDir = (path: string) => {
   });
   return selection;
 };
-
-export default readRootDir;

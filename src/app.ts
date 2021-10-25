@@ -2,13 +2,11 @@
 import { exec } from "child_process";
 import fs from "fs";
 import inquirer from "inquirer";
-import {
-  isReactInstalled,
-  setEnvironment,
-  readRootDir,
-  cleanFolder,
-  getPackageInit,
-} from "./util/index";
+import { cleanFolder } from "./util/cleanFolder";
+import { getPackageInit } from "./util/getPackageInit";
+import { isReactInstalled } from "./util/isReactInstalled";
+import { readRootDir } from "./util/readRootDir";
+import { setEnvironment } from "./util/setEnvironment";
 
 const path = process.cwd();
 const environment = setEnvironment(path);
