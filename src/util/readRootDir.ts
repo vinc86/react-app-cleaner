@@ -1,5 +1,5 @@
 import fs from "fs";
-import { RootDir } from "src/types";
+import { RootDir } from "../types";
 
 export const readRootDir = (path: string) => {
   const folders = fs.readdirSync(path);

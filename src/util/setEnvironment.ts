@@ -1,5 +1,5 @@
 import fs from "fs";
-import { Environment } from "src/types";
+import { Environment } from "../types";
 
 export const setEnvironment = (path: string) => {
   let environment: Environment | undefined = undefined;
