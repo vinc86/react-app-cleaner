@@ -6,7 +6,7 @@ export const cleanFolder = (
   folderName: string,
   environment: Environment | undefined
 ) => {
-  const localPath = __dirname.split("/src/util").join("");
+  const localPath = __dirname.split("/dist/util").join("");
   const location = environment && environment === Environment.TS ? "ts" : "js";
 
   const contentForReplacement =
