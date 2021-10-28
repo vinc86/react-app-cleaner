@@ -1,5 +1,10 @@
 # React-app-cleaner
 
+[![GitHub issues](https://img.shields.io/github/issues/vinc86/react-app-cleaner)](https://github.com/vinc86/react-app-cleaner/issues) 
+[![GitHub stars](https://img.shields.io/github/stars/vinc86/react-app-cleaner)](https://github.com/vinc86/react-app-cleaner/stargazers) 
+[![GitHub license](https://img.shields.io/github/license/vinc86/react-app-cleaner)](https://github.com/vinc86/react-app-cleaner/blob/master/LICENSE) 
+![Written in](https://img.shields.io/badge/written%20in-TypeScript-blue) 
+![Made with](https://img.shields.io/badge/made%20with-Love-red) 
 ## A simple CLI tool for cleaning up your `REACT` project initialized with `create-react-app`
 
 - This tool will cleanup the content of the folder `src` and `public`.
@@ -19,3 +24,4 @@
 ### After
 
 <img width="174" alt="Screenshot 2021-10-15 at 14 15 25" src="https://user-images.githubusercontent.com/48840210/137485648-5add65d6-9d03-4250-9938-19806cb95e7d.png">
+
