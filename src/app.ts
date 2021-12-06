@@ -80,7 +80,11 @@ const environment = setEnvironment(path);
                 .then(({ router }) => {
                   if (router === true) {
                     exec(
-                      `${getPackageInit(path)} react-router-dom`,
+                      `${getPackageInit(
+                        path
+                      )} react-router-dom && ${getPackageInit(
+                        path
+                      )} @types/react-router-dom`,
                       (err, stdout) => {
                         if (err) {
                           console.log(err);
